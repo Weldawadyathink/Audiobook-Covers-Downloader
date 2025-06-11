@@ -11,8 +11,8 @@
     "zod": "npm:zod@^3.25.57"
   },
   "tasks": {
-    "start": "deno run --env-file -A main.ts",
-    "dev": "deno run --env-file -A --watch main.ts",
+    "start": "deno run --env-file -A src/main.ts",
+    "dev": "deno run --env-file -A --watch src/main.ts",
     "docker": "docker build -t audiobookcovers-downloader . && docker run -p 8000:8000 --rm -it audiobookcovers-downloader",
     "docker:it": "docker build -t audiobookcovers-downloader . && docker run -p 8000:8000 --rm -it audiobookcovers-downloader /bin/bash"
   },

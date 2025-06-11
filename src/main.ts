@@ -1,7 +1,10 @@
 import { copy, ensureDir, ensureFile, move } from "@std/fs";
 import { pool, sql } from "./db.ts";
-import { rmdir } from "node:fs/promises";
+import { rm } from "node:fs/promises";
 import { listFilesRecursively } from "./utils.ts";
+import { bdfr } from "./bdfr.ts";
+
+await rm("./bdfr", { recursive: true, force: true });
 
 const redditIds = await pool.manyFirst(
   sql.typeAlias("redditId")`
@@ -13,30 +16,12 @@ const redditIds = await pool.manyFirst(
       "source" LIKE 'https://reddit.com/%';
   `,
 );
+
 await ensureDir("./bdfr");
 await Deno.writeTextFile("./bdfr/exclude_id.txt", redditIds.join("\n"));
-console.log(redditIds);
+console.log(`Loaded ${redditIds.length} reddit ids from database`);
 
-console.log("Deno is running");
-console.log("Starting bdfr downloader");
-await ensureDir("./bdfr");
-const bdfr = new Deno.Command("./.venv/bin/bdfr", {
-  args: [
-    "download",
-    "./bdfr",
-    "--log",
-    "./bdfr.log.txt",
-    "--subreddit",
-    "audiobookcovers",
-    "--limit",
-    "5",
-    "--sort",
-    "new",
-    "--file-scheme",
-    "{POSTID}",
-    "--exclude-id-file",
-    "exclude_id.txt",
-  ],
-});
-// const { success } = await bdfr.output();
+await bdfr.download();
+const files = await listFilesRecursively("./bdfr");
+
 console.log(await listFilesRecursively("./bdfr"));
