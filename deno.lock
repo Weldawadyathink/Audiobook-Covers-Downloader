@@ -7,6 +7,7 @@
     "npm:@aws-sdk/client-s3@^3.826.0": "3.826.0",
     "npm:@aws-sdk/lib-storage@^3.828.0": "3.828.0_@aws-sdk+client-s3@3.826.0",
     "npm:@types/node@*": "22.15.15",
+    "npm:ky@^1.8.1": "1.8.1",
     "npm:mime@^4.0.7": "4.0.7",
     "npm:pg-query-stream@^4.10.0": "4.10.0_pg@8.16.0",
     "npm:pg-types@^4.0.2": "4.0.2",
@@ -16,7 +17,8 @@
     "npm:slonik-interceptor-query-logging@^48.1.2": "48.1.2_slonik@48.1.2__zod@3.25.55",
     "npm:slonik@^48.1.2": "48.1.2_zod@3.25.55",
     "npm:zod@3": "3.25.57",
-    "npm:zod@^3.25.57": "3.25.57"
+    "npm:zod@^3.25.57": "3.25.57",
+    "npm:zod@^3.25.63": "3.25.63"
   },
   "jsr": {
     "@keawade/zod-env@0.1.2": {
@@ -1290,6 +1292,9 @@
     "iso8601-duration@2.1.2": {
       "integrity": "sha512-yXteYUiKv6x8seaDzyBwnZtPpmx766KfvQuaVNyPifYOjmPdOo3ajd4phDNa7Y5mTQGnXsNEcXFtVun1FjYXxQ=="
     },
+    "ky@1.8.1": {
+      "integrity": "sha512-7Bp3TpsE+L+TARSnnDpk3xg8Idi8RwSLdj6CMbNWoOARIrGrbuLGusV0dYwbZOm4bB3jHNxSw8Wk/ByDqJEnDw=="
+    },
     "mime@4.0.7": {
       "integrity": "sha512-2OfDPL+e03E0LrXaGYOtTFIYhiuzep94NSsuhrNULq+stylcJedcHdzHtz0atMUuGwJfFYs0YL5xeC/Ca2x0eQ==",
       "bin": true
@@ -1583,6 +1588,9 @@
     },
     "zod@3.25.57": {
       "integrity": "sha512-6tgzLuwVST5oLUxXTmBqoinKMd3JeesgbgseXeFasKKj8Q1FCZrHnbqJOyiEvr4cVAlbug+CgIsmJ8cl/pU5FA=="
+    },
+    "zod@3.25.63": {
+      "integrity": "sha512-3ttCkqhtpncYXfP0f6dsyabbYV/nEUW+Xlu89jiXbTBifUfjaSqXOG6JnQPLtqt87n7KAmnMqcjay6c0Wq0Vbw=="
     }
   },
   "workspace": {
@@ -1592,6 +1600,7 @@
       "jsr:@std/path@^1.1.0",
       "npm:@aws-sdk/client-s3@^3.826.0",
       "npm:@aws-sdk/lib-storage@^3.828.0",
+      "npm:ky@^1.8.1",
       "npm:mime@^4.0.7",
       "npm:pg-query-stream@^4.10.0",
       "npm:pg-types@^4.0.2",
@@ -1600,7 +1609,7 @@
       "npm:sharp@~0.34.2",
       "npm:slonik-interceptor-query-logging@^48.1.2",
       "npm:slonik@^48.1.2",
-      "npm:zod@^3.25.57"
+      "npm:zod@^3.25.63"
     ]
   }
 }

@@ -5,6 +5,7 @@
     "@keawade/zod-env": "jsr:@keawade/zod-env@^0.1.2",
     "@std/fs": "jsr:@std/fs@^1.0.18",
     "@std/path": "jsr:@std/path@^1.1.0",
+    "ky": "npm:ky@^1.8.1",
     "mime": "npm:mime@^4.0.7",
     "pg": "npm:pg@^8.16.0",
     "pg-query-stream": "npm:pg-query-stream@^4.10.0",
@@ -13,7 +14,7 @@
     "sharp": "npm:sharp@^0.34.2",
     "slonik": "npm:slonik@^48.1.2",
     "slonik-interceptor-query-logging": "npm:slonik-interceptor-query-logging@^48.1.2",
-    "zod": "npm:zod@^3.25.57"
+    "zod": "npm:zod@^3.25.63"
   },
   "nodeModulesDir": "auto",
   "tasks": {

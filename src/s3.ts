@@ -1,9 +1,8 @@
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { S3Client } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
 import { env } from "./env.ts";
 import mime from "mime";
 import { createReadStream, ReadStream } from "node:fs";
-import * as path from "@std/path";
 import { Buffer } from "node:buffer";
 
 const client = new S3Client({

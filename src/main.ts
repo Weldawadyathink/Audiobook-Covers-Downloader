@@ -8,17 +8,15 @@ import * as path from "@std/path";
 import mime from "mime";
 import { imageTransformers } from "./image.ts";
 import { createReadStream } from "node:fs";
+import { getEmbeddings } from "./embed.ts";
 
 await rm("./bdfr", { recursive: true, force: true });
 
 const redditIds = await pool.manyFirst(
   sql.typeAlias("redditId")`
-    SELECT DISTINCT
-      REPLACE("source", 'https://reddit.com/', '') AS slug
-    FROM
-      image
-    WHERE
-      "source" LIKE 'https://reddit.com/%';
+      SELECT DISTINCT REPLACE("source", 'https://reddit.com/', '') AS slug
+      FROM image
+      WHERE "source" LIKE 'https://reddit.com/%';
   `,
 );
 
@@ -49,6 +47,9 @@ for (const file of files) {
       `${transformer.s3Directory}/${id}.${transformer.fileExtension}`,
     );
   }
+
+  const embeddings = await getEmbeddings(`https://${env.AWS_S3_BUCKET}.fly.storage.tigris.dev/original/${id}${extension}`);
+  // TODO: Need to get blurhash and source url for database entry
 }
 
 console.log(await listFilesRecursively("./bdfr"));
