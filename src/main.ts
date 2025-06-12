@@ -3,8 +3,11 @@ import { pool, sql } from "./db.ts";
 import { rm } from "node:fs/promises";
 import { listFilesRecursively } from "./utils.ts";
 import { bdfr } from "./bdfr.ts";
-import { uploadFile } from "./s3.ts";
+import { uploadFile, uploadFileFromStream } from "./s3.ts";
 import * as path from "@std/path";
+import mime from "mime";
+import { imageTransformers } from "./image.ts";
+import { createReadStream } from "node:fs";
 
 await rm("./bdfr", { recursive: true, force: true });
 
@@ -27,8 +30,25 @@ await bdfr.download();
 const files = await listFilesRecursively("./bdfr");
 
 for (const file of files) {
-  const fileKey = `original/${crypto.randomUUID()}${path.extname(file)}`;
-  await uploadFile(file, fileKey);
+  const mimeType = mime.getType(file);
+  const id = crypto.randomUUID();
+  const extension = path.extname(file);
+  if (!mimeType) {
+    throw new Error(`Could not find mime type for ${file}`);
+  }
+  await uploadFileFromStream(
+    createReadStream(file),
+    mimeType,
+    `original/${id}${extension}`,
+  );
+
+  for (const transformer of imageTransformers) {
+    await uploadFileFromStream(
+      await transformer.getImageStream(file),
+      transformer.mime_type,
+      `${transformer.s3Directory}/${id}.${transformer.fileExtension}`,
+    );
+  }
 }
 
 console.log(await listFilesRecursively("./bdfr"));
