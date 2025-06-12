@@ -1,6 +1,12 @@
 {
-  "deno.enablePaths": [
-    "./"
-  ],
-  "editor.inlayHints.enabled": "off"
+  "deno.enablePaths": ["./"],
+  "editor.inlayHints.enabled": "off",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  },
+  "hide-files.files": []
 }

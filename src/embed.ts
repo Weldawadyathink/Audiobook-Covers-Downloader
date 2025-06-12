@@ -27,19 +27,25 @@ async function genericFlyClipModel(
       },
     },
   ).json();
-  return publicClipModelValidator.parse(json);
+  return publicClipModelValidator.parse(json)[0];
 }
 
 export async function getEmbeddings(url: string) {
+  const ps0 = genericFlyClipModel("mobileclip-s0", url);
+  const ps1 = genericFlyClipModel("mobileclip-s1", url);
+  const ps2 = genericFlyClipModel("mobileclip-s0", url);
+  const pb = genericFlyClipModel("mobileclip-s2", url);
+  const pblt = genericFlyClipModel("mobileclip-s2", url);
+  const s0 = await ps0;
+  const s1 = await ps1;
+  const s2 = await ps2;
+  const b = await pb;
+  const blt = await pblt;
   return {
-    mobileclip_s0:
-      (await genericFlyClipModel("mobileclip-s0", url))[0].embedding,
-    mobileclip_s1:
-      (await genericFlyClipModel("mobileclip-s1", url))[0].embedding,
-    mobileclip_s2:
-      (await genericFlyClipModel("mobileclip-s2", url))[0].embedding,
-    mobileclip_b: (await genericFlyClipModel("mobileclip-b", url))[0].embedding,
-    mobileclip_blt:
-      (await genericFlyClipModel("mobileclip-blt", url))[0].embedding,
+    mobileclip_s0: s0.embedding,
+    mobileclip_s1: s1.embedding,
+    mobileclip_s2: s2.embedding,
+    mobileclip_b: b.embedding,
+    mobileclip_blt: blt.embedding,
   };
 }
