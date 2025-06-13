@@ -24,4 +24,5 @@ AWS_ENDPOINT_URL_S3 = "https://fly.storage.tigris.dev"
 AWS_ENDPOINT_URL_IAM = "https://fly.iam.storage.tigris.dev"
 AWS_REGION = 'auto'
 AWS_S3_BUCKET = 'com-audiobookcovers'
-NEW_POSTS_TO_DOWNLOAD = '6'
+REDDIT_SORT = 'new'
+REDDIT_SORT_TIME = 'all'
