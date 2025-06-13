@@ -31,8 +31,7 @@
     "npm:sharp@~0.34.2": "0.34.2",
     "npm:slonik-interceptor-query-logging@^48.1.2": "48.1.2_slonik@48.1.2__zod@3.25.55",
     "npm:slonik@^48.1.2": "48.1.2_zod@3.25.55",
-    "npm:zod@3": "3.25.57",
-    "npm:zod@^3.25.57": "3.25.57",
+    "npm:zod@3": "3.25.63",
     "npm:zod@^3.25.63": "3.25.63"
   },
   "jsr": {
@@ -1667,12 +1666,14 @@
     "zod@3.25.55": {
       "integrity": "sha512-219huNnkSLQnLsQ3uaRjXsxMrVm5C9W3OOpEVt2k5tvMKuA8nBSu38e0B//a+he9Iq2dvmk2VyYVlHqiHa4YBA=="
     },
-    "zod@3.25.57": {
-      "integrity": "sha512-6tgzLuwVST5oLUxXTmBqoinKMd3JeesgbgseXeFasKKj8Q1FCZrHnbqJOyiEvr4cVAlbug+CgIsmJ8cl/pU5FA=="
-    },
     "zod@3.25.63": {
       "integrity": "sha512-3ttCkqhtpncYXfP0f6dsyabbYV/nEUW+Xlu89jiXbTBifUfjaSqXOG6JnQPLtqt87n7KAmnMqcjay6c0Wq0Vbw=="
     }
+  },
+  "remote": {
+    "https://raw.githubusercontent.com/Weldawadyathink/zod-env/refs/heads/main/deno.json": "92be68c5dd4f6aee25ea9f921b9092d6e96162e3f3c91e39274e315551afcf7c",
+    "https://raw.githubusercontent.com/Weldawadyathink/zod-env/refs/heads/main/v4/mod.ts": "3ca4177c644d009c6ea41875e97c879c36bff14a985c295c5a4db4751417c0cd",
+    "https://raw.githubusercontent.com/Weldawadyathink/zod-env/refs/heads/main/v4/parseEnv.ts": "79ba211d27cc7a46c5834c4301227702af9b29e0e0835a452e51e7c47855bdcd"
   },
   "workspace": {
     "dependencies": [

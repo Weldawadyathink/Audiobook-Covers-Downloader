@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { parseEnv } from "@keawade/zod-env";
+import { z } from "zod/v4";
+import { parseEnv } from "@Weldawadyathink/zod-env";
 
 export const env = parseEnv(z.object({
   DATABASE_URL: z.string().url(),
