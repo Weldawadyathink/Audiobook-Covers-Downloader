@@ -9,4 +9,5 @@ export const env = parseEnv(z.object({
   AWS_REGION: z.string(),
   AWS_ENDPOINT_URL_S3: z.string().url(),
   AWS_S3_BUCKET: z.string(),
+  NEW_POSTS_TO_DOWNLOAD: z.coerce.number().int().min(1),
 }));

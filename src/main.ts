@@ -1,5 +1,5 @@
 import { copy, ensureDir, ensureFile, move } from "@std/fs";
-import { pool, sql } from "./db.ts";
+import { addImageToDatabase, getRedditIdList, pool, sql } from "./db.ts";
 import { rm } from "node:fs/promises";
 import { listFilesRecursively } from "./utils.ts";
 import { bdfr } from "./bdfr.ts";
@@ -14,20 +14,13 @@ import { env } from "./env.ts";
 
 await rm("./bdfr", { recursive: true, force: true });
 
-const redditIds = await pool.manyFirst(
-  sql.typeAlias("redditId")`
-      SELECT DISTINCT REPLACE("source", 'https://reddit.com/', '') AS slug
-      FROM image
-      WHERE "source" LIKE 'https://reddit.com/%';
-  `,
-);
-
+const redditIds = await getRedditIdList();
 await ensureDir("./bdfr");
 await Deno.writeTextFile("./bdfr/exclude_id.txt", redditIds.join("\n"));
 console.log(`Loaded ${redditIds.length} reddit ids from database`);
 
 await bdfr.download();
-const files = await listFilesRecursively("./bdfr");
+const files = await listFilesRecursively("./bdfr/AudiobookCovers");
 
 for (const file of files) {
   const mimeType = mime.getType(file);
@@ -37,7 +30,7 @@ for (const file of files) {
   if (!postId) {
     throw new Error(`Could not find post id for ${file}`);
   }
-  const source_url = `https://reddit.com/${postId[0]}`;
+  const source = `https://reddit.com/${postId[0]}`;
   if (!mimeType) {
     throw new Error(`Could not find mime type for ${file}`);
   }
@@ -65,9 +58,14 @@ for (const file of files) {
   const blurhashPromise = blurhashEncode(originalImageUrl);
   const blurhash = await blurhashPromise;
   const embeddings = await embeddingsPromise;
-  console.log(embeddings);
-  console.log(blurhash);
   // TODO: Need to get blurhash and source url for database entry
+  await addImageToDatabase({
+    id,
+    source,
+    embedding: embeddings,
+    extension,
+    blurhash,
+  });
 }
 
 console.log(await listFilesRecursively("./bdfr"));
