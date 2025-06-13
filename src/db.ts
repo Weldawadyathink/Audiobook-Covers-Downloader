@@ -49,6 +49,7 @@ export async function addImageToDatabase(data: {
   if (!blurhashValid) {
     throw new Error("Invalid blurhash");
   }
+  console.log(`Adding ${data.id} to database`);
   await pool.query(
     sql.typeAlias("void")`
         INSERT INTO image (id,
@@ -71,4 +72,5 @@ export async function addImageToDatabase(data: {
                 ${JSON.stringify(data.embedding.mobileclip_blt)});
     `,
   );
+  console.log(`Added ${data.id} to database successfully`);
 }

@@ -5,11 +5,12 @@
 
 app = 'audiobookcovers-downloader'
 primary_region = 'sjc'
+swap_size_mb = 1024
 
 [build]
 
 [[restart]]
-policy = "on-failure"
+policy = 'on-failure'
 retries = 5
 
 
@@ -17,3 +18,10 @@ retries = 5
 memory = '512mb'
 cpu_kind = 'shared'
 cpus = 1
+
+[env]
+AWS_ENDPOINT_URL_S3 = "https://fly.storage.tigris.dev"
+AWS_ENDPOINT_URL_IAM = "https://fly.iam.storage.tigris.dev"
+AWS_REGION = 'auto'
+AWS_S3_BUCKET = 'com-audiobookcovers'
+NEW_POSTS_TO_DOWNLOAD = '6'

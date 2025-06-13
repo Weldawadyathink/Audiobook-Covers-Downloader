@@ -8,6 +8,7 @@ export const bdfr = {
     const bdfr = new Deno.Command("./.venv/bin/bdfr", {
       args: [
         "download",
+        "--verbose",
         "./bdfr",
         "--log",
         "./bdfr.log.txt",

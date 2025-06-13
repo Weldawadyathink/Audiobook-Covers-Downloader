@@ -9,8 +9,9 @@ RUN .venv/bin/pip install -r requirements.txt
 
 FROM denoland/deno:debian AS denobuilder
 WORKDIR /app
+ENV DENO_DIR=/deno-dir/
 COPY deno.json deno.lock ./
-RUN deno install --frozen=true
+RUN deno install --frozen=true --allow-scripts
 
 
 FROM python:3.13-slim-bookworm
@@ -18,6 +19,7 @@ FROM python:3.13-slim-bookworm
 ENV DENO_DIR=/deno-dir/
 COPY --from=denoland/deno:bin /deno /usr/local/bin/
 COPY --from=denobuilder /deno-dir /deno-dir
+COPY --from=denobuilder /app/node_modules /app/node_modules
 WORKDIR /app
 COPY --from=pythonbuilder /app/.venv .venv/
 
