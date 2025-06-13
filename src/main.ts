@@ -67,5 +67,3 @@ for (const file of files) {
     blurhash,
   });
 }
-
-console.log(await listFilesRecursively("./bdfr"));

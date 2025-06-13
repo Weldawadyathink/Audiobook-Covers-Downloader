@@ -1,4 +1,5 @@
 import { copy, ensureDir, ensureFile, move } from "@std/fs";
+import { env } from "./env.ts";
 
 export const bdfr = {
   download: async () => {
@@ -13,7 +14,7 @@ export const bdfr = {
         "--subreddit",
         "audiobookcovers",
         "--limit",
-        "1",
+        env.NEW_POSTS_TO_DOWNLOAD.toString(),
         "--sort",
         "new",
         "--file-scheme",
