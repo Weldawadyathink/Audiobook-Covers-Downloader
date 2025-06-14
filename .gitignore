@@ -1,7 +1,7 @@
 /bdfr
 /logs
-bdfr.log.txt
-bdfr.log.txt*
+bdfr.log
+bdfr.log*
 
 # dotenv environment variable files
 .env

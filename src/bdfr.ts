@@ -22,6 +22,8 @@ export const bdfr = {
         "{POSTID}",
         "--exclude-id-file",
         "bdfr/exclude_id.txt",
+        "--disable-module",
+        "SelfPost",
       ],
       stdout: "inherit",
       stderr: "inherit",

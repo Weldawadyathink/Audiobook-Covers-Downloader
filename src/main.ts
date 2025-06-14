@@ -27,6 +27,7 @@ for (const file of files) {
   const id = crypto.randomUUID();
   const extension = path.extname(file);
   const postId = path.basename(file).match(/(^[^_.\s]*)/);
+  console.log(`Processing ${file} with type ${mimeType}`);
   if (!postId) {
     throw new Error(`Could not find post id for ${file}`);
   }
@@ -35,7 +36,10 @@ for (const file of files) {
     throw new Error(`Could not find mime type for ${file}`);
   }
   if (!mimeType.startsWith("image/")) {
-    console.log(`Skipping ${file} because it is not an image`);
+    console.log(
+      `Skipping ${file} because it is not an image, type: ${mimeType}`,
+    );
+    continue;
   }
 
   await uploadFileFromStream(

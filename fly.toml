@@ -10,13 +10,13 @@ swap_size_mb = 1024
 [build]
 
 [[restart]]
-policy = 'on-failure'
-retries = 5
+policy = 'never'
+retries = 0
 
 
 [[vm]]
-memory = '512mb'
-cpu_kind = 'shared'
+memory = '2048mb'
+cpu_kind = 'performance'
 cpus = 1
 
 [env]
