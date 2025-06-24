@@ -31,7 +31,8 @@ export async function getRedditIdList() {
     sql.typeAlias("redditId")`
         SELECT DISTINCT REPLACE("source", 'https://reddit.com/', '') AS slug
         FROM image
-        WHERE "source" LIKE 'https://reddit.com/%';
+        WHERE source LIKE 'https://reddit.com/%'
+        AND from_old_database = false;
     `,
   );
 }
